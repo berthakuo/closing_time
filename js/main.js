@@ -16,8 +16,9 @@ $("ul").on("click", "li", styleList);
 
 function styleList(){
 	//for(var i=0; i<listlength; i++)
-	console.log("toggle is working")
-	$(this).children().toggleClass("on")
+	console.log("toggle is working");
+	$(this).toggleClass("yellow");
+	console.log("toggle is working");
 
 
 
