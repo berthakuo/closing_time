@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="Your description goes here">
+	<meta name="keywords" content="one, two, three">
+	
+	<title>Blank Template</title>
+
+	<!-- external CSS link -->
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="js/map-icons.js">
+	<link rel="stylesheet" href="css/map-icons.css">
+	<link href='http://fonts.googleapis.com/css?family=Allan:400,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="font-awesome-4.0.3/css/font-awesome.min.css">
+	<link href='http://fonts.googleapis.com/css?family=Muli:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+</head>
+<body load="initialize()">
+	<header class="clearfix">
+		<div>
+			<h1>Closing Time</h1>
+			<p>Find what's open where you are</p>
+		</div>
+		<div class="icon-row clearfix">
+				<div class="bar icon">
+					 <div class="fa fa-glass off"></div>
+				</div>
+				<div class="coffee icon"> 
+					<div class="fa fa-coffee off"></div> 
+				</div>
+				<div class="restaurant icon">
+					<div class="fa fa-cutlery off"></div>
+				</div>		 
+		</div>
+	</header>
+	
+	<div class="main container clearfix">
+		<div id="map-canvas"></div>
+			
+		<div class="list">
+			<ul class="ulist"></ul>
+		</div>
+	
+	</div>
+	
+		
+	<!-- 	<div class="time">
+			<span class="current-hour"></span>
+			<span class="am-pm"></span>
+		</div> -->
+		
+		<!-- <div class="list-time"> -->
+		<div class="button up">up</div>
+	
+		<!-- <div class="chevron-row">
+			<i class="button up fa fa-chevron-right fa-5x"></i>
+			<i class="butt down fa fa-chevron-left fa-5x"></i>
+			<div class="button now">NOW</div>
+		</div> -->
+	<footer>
+		<p> Made by BKuo </p>
+	</footer>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDn_uT11vwZZW8o50HHp96dQ3LpIDuuCcY&sensor=false&libraries=places"></script>
+	<script src="js/main.js"></script>
+
+</body>
+</html>

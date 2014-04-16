@@ -1,0 +1,311 @@
+/* 
+Project Name: Blank Template
+Client: Your Client
+Author: Your Name
+Developer @GA in NYC
+*/
+
+
+/******************************************
+/* SETUP                   
+/*******************************************/
+
+/* Box Model Hack */
+* {
+     -moz-box-sizing: border-box; /* Firexfox */
+     -webkit-box-sizing: border-box; /* Safari/Chrome/iOS/Android */
+     box-sizing: border-box; /* IE */
+}
+
+/* Clear fix hack */
+.clearfix:after {
+     content: ".";
+     display: block;
+     clear: both;
+     visibility: hidden;
+     line-height: 0;
+     height: 0;
+}
+
+.clear {
+	clear: both;
+}
+
+.alignright {
+	float: right; 
+	padding: 0 0 10px 10px; /* note the padding around a right floated image */
+}
+
+.alignleft {
+	float: left; 
+	padding: 0 10px 10px 0; /* note the padding around a left floated image */
+}
+
+/******************************************
+/* BASE STYLES                   
+/*******************************************/
+
+body {
+     color: #000;
+     line-height: 1.4;
+     font-family: 'Lato', sans-serif;
+     font-weight: 300;
+     min-height:100px; 
+     font-size: 1em;
+     max-width:1300px;
+     margin: auto;
+}
+
+
+/******************************************
+/* LAYOUT                   
+/*******************************************/
+
+header, footer{
+     background-color: #ebb721;
+     margin:0;
+     padding:10px;
+}
+
+h1{
+     font-family: 'Allan', cursive;
+     font-size: 4em;
+     color:black;
+     margin:0;
+     text-transform: uppercase;
+}
+
+header p {
+     margin:0;
+     font-size: 1.5em;
+}
+
+header div {
+     float:left;
+}
+
+/*.icon {
+     height:100px;
+     width:100px;
+     border-radius: 50px;
+     border:solid 4px black;
+     float:left;
+     margin:10px;
+     padding-top: 18px;
+     background:black;
+     position:relative;
+}*/
+
+.icon-row{
+     float:right;
+}
+
+
+.icon{
+     background: black;
+     border-radius: 50px;
+     height:100px;
+     width:100px;
+     position:relative;
+     margin: 10px;
+}
+
+.fa{
+     font-size: .7em;
+     position:absolute;
+     top:22%;
+}
+
+.fa-glass{
+     right:25%;
+}
+.fa-cutlery{
+     right:30%;
+}
+
+.fa-coffee{
+     right:20%;
+}
+
+li{
+     color:#545A53;
+     font-size: 1.4em;
+     text-transform:uppercase;
+     border-bottom: 2px solid #A8ACAC;
+     padding: 20px 0 0 20px;
+     height:100px;
+
+}
+
+ul{
+     list-style-type: none;
+     padding:0;
+     margin:0;
+     width:100%;
+}
+
+
+.on{
+     color:red
+}
+
+.off{
+     color:white;
+}
+
+
+
+
+#map-canvas {
+     /*background:url("http://maps.googleapis.com/maps/api/staticmap?center=42.364081,-71.101503&zoom=15&size=600x600&sensor=false");*/
+     height:600px;
+     width:65%;
+     float:left;
+     /*border-radius: 300px;*/
+     /*position:absolute;*/
+}
+/*.fa-chevron-left:hover, .fa-chevron-right:hover{
+     color:#00dc93;
+}
+
+.fa-chevron-left, .fa-chevron-right{
+     color:white;
+}
+
+.fa-chevron-left{
+     float:left;
+}
+
+.fa-chevron-right{
+     float:right;
+}
+*/
+
+.list{
+     float:left;
+     background-color: white;
+     width:35%;
+     color:black;
+
+}
+
+
+
+.am-pm{
+     font-size: 1em;
+}
+
+.list-time{
+     width:100px;
+     float:left;
+     background:#0a2938;
+}
+
+.button{
+     color:black;
+     font-size: 3em;
+}
+
+footer{
+     height:50px;
+}
+
+
+@media(max-width:500px){
+     #map-canvas{
+          width:100%;
+          height:500px;
+     }
+
+     h1{
+          font-size: 2.2em;
+          margin-top: 10px
+     }
+
+     header p{
+          display:none;
+     }
+
+
+     .icon{
+          width:60px;
+          height:60px;
+          margin:6px;
+     }
+
+     .fa{
+          font-size: .45em;
+     }
+
+     .fa-glass{
+          right:22%;
+     }
+     .fa-coffee{
+          right:20%;
+     }
+     .fa-cutlery{
+          right:27%;
+     }
+    /* .icon{
+          width:50px;
+          height:50px;
+          border-radius: 25px;
+          border:solid 4px black;
+          margin:10px;
+          padding-top: 18px;
+     }*/
+
+     .list{
+          float:none;
+          height:100px;
+          width:100%;
+          overflow: hidden;
+
+     }
+   
+     li{
+          font-size: 1.4em;
+          line-height: 2em;
+          border-bottom: 0 solid #545A53;
+          
+     }
+
+}
+
+.marker-icon {
+     z-index: 99;
+     position: absolute;
+     display: block;
+     margin-top: -50px;
+     margin-left: -25px;
+     width: 50px;
+     height: 50px;
+     font-size: 30px;
+     text-align: center;
+     color: #00dc93;
+     white-space: nowrap;
+}
+
+/*.time{
+     font-size: 10em;
+     /*z-index: 100000;*/
+ /*    opacity:0.5;
+     position:absolute;
+     top:180px;
+     text-align: center;
+
+}
+
+
+
+.chevron-row{
+     width: 700px;
+     position:absolute;
+     top:300px;
+     right:-50px;
+}
+
+.chevron-row div{
+     display:inline-block;
+}*/
+
