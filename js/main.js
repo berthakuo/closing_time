@@ -12,7 +12,7 @@ function rList(){
 
 /******************************
 /***********************************/
-$(".ul").on("click",styleList);
+$("ul").on("click", "li", styleList);
 
 function styleList(){
 	//for(var i=0; i<listlength; i++)
@@ -283,12 +283,25 @@ function createMarkers(results, status) {
 				//markers[0].icon.fillColor="#299bd4";
 				//.log(markers[0].icon.fillColor + " this is consolelog");
 				names.push(results[i].name);	
-				$("ul").append("<li>"+results[i].name+"</li>");
+				var name = results[i].name;
+console.log(name);
 
-				service.getDetails({reference:results[i].reference}, getAddress);
+				service.getDetails({reference:results[i].reference}, function (placeResult){
+					console.log(name);
+					console.log(placeResult);
+					var address = placeResult.formatted_address.replace(", United States","")
+					$("ul").append(
+						"<li>"+ 
+							"<div class='name'>"+
+								placeResult.name+ 
+							"</div>" + 
+							"<div class='address'>" + 
+								address + 
+							"</div>"+
+							"</li>");
+				})
 			}
 		}
-
 	}
 }
 function updateMarker(markers,index,color){
@@ -300,12 +313,6 @@ markers[0].icon.fillColor="#ff6c00";
 console.log(marker);
 // s			
 			
-function getAddress(PlaceResult){
-	console.log($("li").last().html())
-	$("li").last().html().append(PlaceResult.formatted_address)
-	console.log(PlaceResult.formatted_address)
-
-}
 
 // function openingHours(PlaceResult){
 // 	if(PlaceResult.opening_hours){
