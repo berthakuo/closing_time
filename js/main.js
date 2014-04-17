@@ -1,23 +1,38 @@
-$(".mobile-button").on("click",showHeader);
+// $(".arrow-button").on("click", clickArrow);
 
-function showHeader(){
-	$(".icon-row").toggleClass("show");
-	$(".icon-row").toggleClass("hidden")
-}
+// function clickArrow(){
+// 	console.log("arrowbutton")
+// 	$("ul").css({"margin-top":"-100px"},{"transition":"1s ease"});
+// 	resetList();
+// 	getFirstStore();
+// }
 
 
 
+// /******************************
+// /***********************************/
 
-var lastIndex=0;
-$(".button").on("click",rList);
+// $(".mobile-button").on("click",showHeader);
 
-function rList(){
+// function showHeader(){
+// 	$(".icon-row").toggleClass("show");
+// 	$(".icon-row").toggleClass("hidden")
+// }
+
+
+// /******************************
+// /***********************************/
+
+// var lastIndex=0;
+// $(".button").on("click",resetList);
+
+// function resetList(){
 	
-	var firstItem = $("li").first();
-	$("ul").append(firstItem);
-	getFirstStore();
+// 	var firstItem = $("li").first();
+// 	$("ul").append(firstItem);
+	
 
-}
+
 
 /******************************
 /***********************************/
@@ -25,32 +40,41 @@ $("ul").on("click", "li", styleList);
 
 function styleList(){
 	//for(var i=0; i<listlength; i++)
-	console.log("toggle is working");
-	$(this).toggleClass("yellow");
-	console.log("toggle is working");
-
-
-
-	//getFirstStore();
-
+	$("ul li").removeClass("yellow");
+	$(this).addClass("yellow");
+	var poop=($(this).children());
+	addYellowMarker(poop);
 }
 
 /******************************
 /***********************************/
 
-function getFirstStore(){
+function addYellowMarker(poop){
 	//updateMarker(markers,lastIndex,"#ffae73");
 	for(var i=0; i<names.length; i++){
-		if($("li").first().html() == names[i]){
+		console.log("poop.first().html()"+poop.first().html())
+		if(poop.first().html() == names[i]){
+
+			updateMarker(markers,i,"#ebb721");
+		}
+		else{
+			updateMarker(markers,i,"black");
+
+		}	
+	}
+}
+
+function removeYellowMarker(){
+	//updateMarker(markers,lastIndex,"#ffae73");
+	for(var i=0; i<names.length; i++){
+		if($("li>div").first().html() == names[i]){
 			updateMarker(markers,i,"ebb721");
-			console.log(names[i])
+			
 		}
 		else{
 			updateMarker(markers,i,"black");
 		}
 		lastIndex=i;
-			
-		
 	}
 }
 
@@ -81,7 +105,6 @@ GET CURRENT LOCATION COORDINATES
 /********************************
 GLOBAL VARIABLES
 /***********************************/
-
 
 var markers = [];
 var names =[];
@@ -159,14 +182,22 @@ $(".current-hour").html(h12+":"+m);
 /********************************
 TOGGLE ICON COLORS
 **********************************/
-$(".bar").on("click", toggleRed);
-$(".coffee").on("click", toggleRed);
-$(".restaurant").on("click", toggleRed);
+$(".bar").on("click", toggleIcon);
+$(".coffee").on("click", toggleIcon);
+$(".restaurant").on("click", toggleIcon);
 
-function toggleRed(){
-	$(this).toggleClass("on");
-	$(this).toggleClass("off");
-	createMarkerArray();
+function toggleIcon(){
+	if($(this).hasClass("on")){
+		$(this).removeClass("on");
+		deleteMarkers();
+		$("ul").empty();
+	}
+	else{
+		$(".fa").removeClass("on");
+		$(this).addClass("on");
+		createInput();
+		refreshMap();
+	}
 }
 /********************************
 Add aditional locations once you get central to work
@@ -226,7 +257,7 @@ map.setOptions({styles: styles});
 Clear markers and SET UP SEARCH ARRAY
 **********************************/
 var input=[];
-function createMarkerArray(){
+function createInput(){
 	input=[];
 	deleteMarkers();
 
@@ -240,12 +271,12 @@ function createMarkerArray(){
 		}
 	}
 
-	if(input.length != 0){
-		refreshMap();
-		markers[0].icon.fillColor="#299bd4";
+	// if(input.length != 0){
+	// 	refreshMap();
+	// 	markers[0].icon.fillColor="#299bd4";
 		
 
-	}
+	// }
 }
 /********************************
 GET & DISPLAY BARS
@@ -274,7 +305,8 @@ var closingTime="";
 
 function createMarkers(results, status) {
 	//("ul").children().remove();
-
+markers=[];
+names=[];
 	if (status == google.maps.places.PlacesServiceStatus.OK) {
 		$("ul").empty();
 
@@ -290,15 +322,11 @@ function createMarkers(results, status) {
 				});
 
 				markers.push(marker);
-				//markers[0].icon.fillColor="#299bd4";
-				//.log(markers[0].icon.fillColor + " this is consolelog");
-				names.push(results[i].name);	
-				var name = results[i].name;
-console.log(name);
+				names.push(results[i].name);
+				console.log(results[i].name)	
+				// var name = results[i].name;
 
-				service.getDetails({reference:results[i].reference}, function (placeResult){
-					console.log(name);
-					console.log(placeResult);
+				service.getDetails({reference:results[i].reference}, function (placeResult){;
 					var address = placeResult.formatted_address.replace(", United States","")
 					$("ul").append(
 						"<li>"+ 
@@ -317,11 +345,7 @@ console.log(name);
 function updateMarker(markers,index,color){
 	markers[index].icon.fillColor=color;
 	markers[index].setIcon(markers[index].icon);
-}
-markers[0].icon.fillColor="#ff6c00";
-//markers[0].setMap(map);
-console.log(marker);
-// s			
+}			
 			
 
 // function openingHours(PlaceResult){

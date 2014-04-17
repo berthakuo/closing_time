@@ -204,6 +204,11 @@ ul{
 
 }
 
+.arrow-button{
+     float:right;
+     width:0;
+}
+
 
 
 
@@ -234,11 +239,11 @@ footer{
      }
 
      h1{
-          font-size: 2em;
+          font-size: 1.8em;
      }
      
      header {
-          height:50px;
+          height:44px;
           padding:5px 0 0 10px;
           width:100%;
 
@@ -251,8 +256,8 @@ footer{
      .mobile-button{
           border-radius: 20px;
           border:5px solid #1F2020;
-          height:35px;
-          width:35px;
+          height:30px;
+          width:30px;
           float:right;
           margin-right: 10px;
           position:relative;
@@ -302,6 +307,10 @@ footer{
      li:first-child{
           background:#ebb721;
      }
+
+     li div:last-child{
+     margin-top: 0px;
+}
     /* .icon{
           width:50px;
           height:50px;
@@ -311,18 +320,37 @@ footer{
           padding-top: 18px;
      }*/
 
-     .list{
+     .list-container{
           float:none;
-          height:100px;
+          position:fixed;
+          bottom:0;
           width:100%;
 
+     }
+
+     .list, .arrow-button{
+          height:60px;
+     }
+
+     .list{
+          width:80%;
+          overflow-y:hidden;
+
+     }
+
+     .arrow-button{
+          width:20%;
+          background-color: black;
      }
    
      li{
           border-bottom: 0 solid #545A53;
-          
      }
 
+     footer{
+          display:none;
+     }
+     
 }
 
 .marker-icon {
@@ -339,14 +367,14 @@ footer{
      white-space: nowrap;
 }
 
-.on{
-     color:red
+
+.fa{
+     color:#ebb721;
 }
 
-.off{
+.on{
      color:white;
 }
-
 .yellow{
      background-color: #ebb721;
 }
