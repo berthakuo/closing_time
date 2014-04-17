@@ -1,3 +1,12 @@
+$(".mobile-button").on("click",showHeader);
+
+function showHeader(){
+	$(".icon-row").toggleClass("show");
+	$(".icon-row").toggleClass("hidden")
+}
+
+
+
 
 var lastIndex=0;
 $(".button").on("click",rList);
