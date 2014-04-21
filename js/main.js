@@ -221,27 +221,27 @@ var map;
 
 /*function loadCambridge (){*/
 
-var x = document.getElementById("demo");
-function getLocation()
-  {
-  if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(showPosition);
-    }
-  else{
-  	console.log("Geolocation is not supported by this browser.")}
-  }
-function showPosition(position){
-  var lat = position.coords.latitude;
-  var lng =position.coords.longitude; 
+// var here;
+// function getLocation()
+//   {
+//   if(navigator.geolocation){
+//     navigator.geolocation.getCurrentPosition(showPosition);
+//     }
+//   else{
+//   	console.log("Geolocation is not supported by this browser.")}
+//   }
+// function showPosition(position){
+//   var lat=position.coords.latitude;
+//   var lng=position.coords.longitude; 
   
 
 
 
-	var here = new google.maps.LatLng(lat,lng);
+	//var here = new google.maps.LatLng(lat,lng);
 	var cambridge = new google.maps.LatLng(42.364081,-71.101503);
 
 	var mapOptions = {
-		center: here,
+		center:cambridge,
 		zoom: 16
 	};
 
@@ -270,7 +270,7 @@ function showPosition(position){
 	];
 
 	map.setOptions({styles: styles});	
-}
+
 /********************************
 Clear markers and SET UP SEARCH ARRAY
 **********************************/
