@@ -221,26 +221,29 @@ var map;
 /*function loadCambridge (){*/
 
 // var here;
-function getLocation()
-  {
-  if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(showPosition);
-    }
-  else{
-  	console.log("Geolocation is not supported by this browser.")}
-  }
-function showPosition(position){
-  var lat=position.coords.latitude;
-  var lng=position.coords.longitude; 
+// getLocation;
+
+// function getLocation()
+//   {
+//   if(navigator.geolocation){
+//     navigator.geolocation.getCurrentPosition(showPosition);
+//     }
+//   else{
+//   	console.log("Geolocation is not supported by this browser.")
+//   }
+//   }
+// function showPosition(position){
+//   var lat=position.coords.latitude;
+//   var lng=position.coords.longitude; 
   
 
 
 
-	var here = new google.maps.LatLng(lat,lng);
+	// var here = new google.maps.LatLng(lat,lng);
 	var cambridge = new google.maps.LatLng(42.364081,-71.101503);
 
 	var mapOptions = {
-		center:here,
+		center:cambridge,
 		zoom: 16
 	};
 
@@ -308,7 +311,7 @@ function deleteMarkers() {
 
 function refreshMap(){
 	var request = {
-		location: here,
+		location: cambridge,
 		radius: 300,
 		types:input
 	};
