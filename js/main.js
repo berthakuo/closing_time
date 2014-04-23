@@ -27,10 +27,9 @@
 // $(".button").on("click",resetList);
 
 // function resetList(){
-	
+
 // 	var firstItem = $("li").first();
 // 	$("ul").append(firstItem);
-	
 
 
 
@@ -69,7 +68,7 @@ function removeYellowMarker(){
 	for(var i=0; i<names.length; i++){
 		if($("li>div").first().html() == names[i]){
 			updateMarker(markers,i,"ebb721");
-			
+
 		}
 		else{
 			updateMarker(markers,i,"black");
@@ -222,26 +221,26 @@ var map;
 /*function loadCambridge (){*/
 
 // var here;
-// function getLocation()
-//   {
-//   if(navigator.geolocation){
-//     navigator.geolocation.getCurrentPosition(showPosition);
-//     }
-//   else{
-//   	console.log("Geolocation is not supported by this browser.")}
-//   }
-// function showPosition(position){
-//   var lat=position.coords.latitude;
-//   var lng=position.coords.longitude; 
+function getLocation()
+  {
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  else{
+  	console.log("Geolocation is not supported by this browser.")}
+  }
+function showPosition(position){
+  var lat=position.coords.latitude;
+  var lng=position.coords.longitude; 
   
 
 
 
-	//var here = new google.maps.LatLng(lat,lng);
+	var here = new google.maps.LatLng(lat,lng);
 	var cambridge = new google.maps.LatLng(42.364081,-71.101503);
 
 	var mapOptions = {
-		center:cambridge,
+		center:here,
 		zoom: 16
 	};
 
@@ -292,7 +291,7 @@ function createInput(){
 	// if(input.length != 0){
 	// 	refreshMap();
 	// 	markers[0].icon.fillColor="#299bd4";
-		
+
 
 	// }
 }
@@ -309,7 +308,7 @@ function deleteMarkers() {
 
 function refreshMap(){
 	var request = {
-		location: cambridge,
+		location: here,
 		radius: 300,
 		types:input
 	};
@@ -364,7 +363,7 @@ function updateMarker(markers,index,color){
 	markers[index].icon.fillColor=color;
 	markers[index].setIcon(markers[index].icon);
 }			
-			
+
 
 // function openingHours(PlaceResult){
 // 	if(PlaceResult.opening_hours){
@@ -388,6 +387,5 @@ function updateMarker(markers,index,color){
 
 
 	/*google.maps.event.addDomListener(window, 'load', initialize);*/
-
 
 
