@@ -32,8 +32,15 @@
 // 	$("ul").append(firstItem);
 
 
+/********************************
+GLOBAL VARIABLES
+/***********************************/
+var markers = [];
+var names =[];
 
-/******************************
+
+/***********************************
+USER CLICKS ON A STORE
 /***********************************/
 $("ul").on("click", "li", styleList);
 
@@ -45,7 +52,8 @@ function styleList(){
 	addYellowMarker(poop);
 }
 
-/******************************
+/***********************************
+ADD OR REMOVE YELLOW MARKER
 /***********************************/
 //$('<div />').html("Chris&apos; corner").text()
 
@@ -54,8 +62,6 @@ function addYellowMarker(poop){
 	//updateMarker(markers,lastIndex,"#ffae73");
 	for(var i=0; i<names.length; i++){
 		var pee = poop.first().html();
-		console.log($('<div />').html(pee).text())
-		console.log("names " + names[i])
 		if($('<div />').html(pee).text() == names[i]){
 
 			updateMarker(markers,i,"#ebb721");
@@ -85,14 +91,14 @@ function removeYellowMarker(){
 
 /******************************
 /***********************************/
-if($(window).width()<500){
-	$(".icon").toggleClass("fa-2x");
-	$(".icon").toggleClass("fa-5x");
-}
-else{
-	$(".icon").toggleClass("fa-5x");
-	$(".icon").toggleClass("fa-2x");
-}
+// if($(window).width()<500){
+// 	$(".icon").toggleClass("fa-2x");
+// 	$(".icon").toggleClass("fa-5x");
+// }
+// else{
+// 	$(".icon").toggleClass("fa-5x");
+// 	$(".icon").toggleClass("fa-2x");
+// }
 /********************************
 GET CURRENT LOCATION COORDINATES
 /***********************************/
@@ -103,86 +109,11 @@ else{
 	console.log("this doesn't work on your browser");
 }
 
-function showPosition(position){
- 	var currentLat=position.coords.latitude;
-	var currentLng=position.coords.longitude;
-}
-/********************************
-GLOBAL VARIABLES
-/***********************************/
-
-var markers = [];
-var names =[];
-
-/********************************
-/*GET CURRENT TIME 
-/***********************************/
-var d = new Date();
-var h24 = d.getHours();
-var m=d.getMinutes();
-
-//var h24 = d.getHours();
-var h12;
-
-if (h24 > 12){
-	h12 = h24 - 12;
-	$(".am-pm").html("PM");
-}
-else if (h12 < 10){
-	h12="0"+h12.toString();
-	$(".am-pm").html("AM");
-}
-else{
-	h12=h24;
-	$(".am-pm").html("AM");
+// function showPosition(position){
+//  	var currentLat=position.coords.latitude;
+// 	var currentLng=position.coords.longitude;
 }
 
-$(".current-hour").html(h12+":"+m);
-
-/********************************
-/*Adjust Time Displayed
-/***********************************/
-
-// $(".up").on("click", increaseTime);
-// $(".down").on("click", decreaseTime);
-
-// function increaseTime(){
-// 	var numHour = Number($(".current-hour").html());
-// 	if(numHour==12){
-// 		$(".current-hour").html(1);
-// 		if ($(".am-pm").html()=="PM"){
-// 			$(".am-pm").html("AM");
-// 		}
-// 		else{
-// 			$(".am-pm").html("PM");
-// 		}
-// 	}
-// 	else {
-// 		$(".current-hour").html(numHour+1);
-// 	}
-// }
-
-// function decreaseTime(){
-// 	var numHour = Number($(".current-hour").html());
-// 	if(numHour==1){
-// 		$(".current-hour").html(12);
-// 		if ($(".am-pm").html()=="PM"){
-// 			$(".am-pm").html("AM");
-// 		}
-// 		else{
-// 			$(".am-pm").html("PM");
-// 		}
-// 	}
-// 	else {
-// 		$(".current-hour").html(numHour-1);
-// 	}
-// }
-
-
-// $(".now").on("click", resetTime);
-// function resetTime(){
-// 	$(".current-hour").html(h12);
-// }
 
 /********************************
 TOGGLE ICON COLORS
@@ -204,22 +135,7 @@ function toggleIcon(){
 		refreshMap();
 	}
 }
-/********************************
-Add aditional locations once you get central to work
-**********************************/
-// $(".harvard").on("click",toggleBlue);
-// $(".inman").on("click"), setMap);
-// $(".central").on("click", setMap);
-
-// allLocations =[".harvard", ".inman", ".central"];
-// function toggleBlue(){
-// 	$(this).toggleClass("on");
-// 	$(this).toggleClass("off");
-// 	for(var i=0; i<allLocations.length; i++){
-// 		if 
-// 	}
-// }
-/********************************
+/****************************
 SETS UP THE MAP
 **********************************/
 var map;
@@ -242,9 +158,6 @@ var here;
  function showPosition(position){
    var lat=position.coords.latitude;
    var lng=position.coords.longitude; 
-  
-
-
 
 	 here = new google.maps.LatLng(lat,lng);
 	//var cambridge = new google.maps.LatLng(42.364081,-71.101503);
