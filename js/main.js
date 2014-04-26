@@ -68,7 +68,7 @@ function removeYellowMarker(){
  $('<div />').html("Chris&apos; corner").text();
 
 	for(var i=0; i<names.length; i++){
-		if($("li>div").first().html() == $('<div />').html(names[i]).text(){
+		if($("li>div").first().html() == $('<div />').html(names[i]).text()){
 			updateMarker(markers,i,"ebb721");
 
 		}
