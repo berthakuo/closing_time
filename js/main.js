@@ -118,10 +118,11 @@ else{
 /********************************
 TOGGLE ICON COLORS
 **********************************/
+
 $(".bar").on("click", toggleIcon);
 $(".coffee").on("click", toggleIcon);
 $(".restaurant").on("click", toggleIcon);
-
+$(".bar").click()
 function toggleIcon(){
 	if($(this).hasClass("on")){
 		$(this).removeClass("on");
