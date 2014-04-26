@@ -47,13 +47,16 @@ function styleList(){
 
 /******************************
 /***********************************/
+//$('<div />').html("Chris&apos; corner").text()
+
 
 function addYellowMarker(poop){
 	//updateMarker(markers,lastIndex,"#ffae73");
 	for(var i=0; i<names.length; i++){
-		console.log("poop.first().html().text()"+poop.first().html())
+		var pee = poop.first().html();
+		console.log($('<div />').html(pee).text())
 		console.log("names " + names[i])
-		if(poop.first().html().text() == names[i]){
+		if($('<div />').html(pee).text() == names[i]){
 
 			updateMarker(markers,i,"#ebb721");
 		}
@@ -69,10 +72,8 @@ function removeYellowMarker(){
  $('<div />').html("Chris&apos; corner").text();
 
 	for(var i=0; i<names.length; i++){
-		if($("li>div").first().html() == $('<div />').html(names[i]).text()){
+		if($("li>div").first().html() == names[i]){
 			updateMarker(markers,i,"ebb721");
-			console.log("yellow marker");
-			console.log($('<div />').html(names[i]).text());
 
 		}
 		else{
