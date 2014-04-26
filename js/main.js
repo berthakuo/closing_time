@@ -66,7 +66,7 @@ function addYellowMarker(poop){
 function removeYellowMarker(){
 	//updateMarker(markers,lastIndex,"#ffae73");
 	for(var i=0; i<names.length; i++){
-		if($("li>div").first().html() == names[i]){
+		if(html_entity_decode($("li>div").first().html()) == html_entity_decode(names[i])){
 			updateMarker(markers,i,"ebb721");
 
 		}
