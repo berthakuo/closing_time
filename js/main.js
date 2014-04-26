@@ -273,7 +273,7 @@ var here;
 	];
 
 	map.setOptions({styles: styles});	
-
+}
 /********************************
 Clear markers and SET UP SEARCH ARRAY
 **********************************/
