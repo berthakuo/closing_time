@@ -52,6 +52,7 @@ function addYellowMarker(poop){
 	//updateMarker(markers,lastIndex,"#ffae73");
 	for(var i=0; i<names.length; i++){
 		console.log("poop.first().html()"+poop.first().html())
+		console.log("names " + names[i])
 		if(poop.first().html() == names[i]){
 
 			updateMarker(markers,i,"#ebb721");
