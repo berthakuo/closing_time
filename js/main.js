@@ -112,7 +112,7 @@ else{
 // function showPosition(position){
 //  	var currentLat=position.coords.latitude;
 // 	var currentLng=position.coords.longitude;
-}
+//}
 
 
 /********************************
