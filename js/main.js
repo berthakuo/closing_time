@@ -70,6 +70,8 @@ function removeYellowMarker(){
 	for(var i=0; i<names.length; i++){
 		if($("li>div").first().html() == $('<div />').html(names[i]).text()){
 			updateMarker(markers,i,"ebb721");
+			console.log("yellow marker");
+			console.log($('<div />').html(names[i]).text());
 
 		}
 		else{
