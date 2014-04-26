@@ -90,17 +90,17 @@ else{
 /********************************
 GET CURRENT LOCATION COORDINATES
 /***********************************/
-// if (navigator.geolocation){ 
-// 	navigator.geolocation.getCurrentPosition(showPosition);
-// }
-// else{
-// 	console.log("this doesn't work on your browser");
-// }
+ if (navigator.geolocation){ 
+ 	navigator.geolocation.getCurrentPosition(showPosition);
+ }
+else{
+	console.log("this doesn't work on your browser");
+}
 
-// function showPosition(position){
-// 	var currentLat=position.coords.latitude;
-// 	var currentLng=position.coords.longitude;
-// }
+function showPosition(position){
+ 	var currentLat=position.coords.latitude;
+	var currentLng=position.coords.longitude;
+}
 /********************************
 GLOBAL VARIABLES
 /***********************************/
@@ -232,18 +232,19 @@ var map;
 //   	console.log("Geolocation is not supported by this browser.")
 //   }
 //   }
-// function showPosition(position){
-//   var lat=position.coords.latitude;
-//   var lng=position.coords.longitude; 
+var here;
+ function showPosition(position){
+   var lat=position.coords.latitude;
+   var lng=position.coords.longitude; 
   
 
 
 
-	// var here = new google.maps.LatLng(lat,lng);
-	var cambridge = new google.maps.LatLng(42.364081,-71.101503);
+	 here = new google.maps.LatLng(lat,lng);
+	//var cambridge = new google.maps.LatLng(42.364081,-71.101503);
 
 	var mapOptions = {
-		center:cambridge,
+		center:here,
 		zoom: 16
 	};
 
@@ -311,7 +312,7 @@ function deleteMarkers() {
 
 function refreshMap(){
 	var request = {
-		location: cambridge,
+		location: here,
 		radius: 300,
 		types:input
 	};
