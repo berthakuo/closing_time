@@ -126,19 +126,19 @@ $(".restaurant").on("click", toggleRestaurant);
 $(".bar").click()
 
 function toggleBar(){
-	if($(this).hasClass("on")){			//user is turning the icon OFF
+	if($(this).hasClass("on")){							//user is turning the icon OFF
 		$(this).removeClass("on");
 		deleteMarkers();
 		$("ul").empty();
 	}
-	else if(savedBarResults=="undefined"){
-		$(".fa").removeClass("on");		//user is turning the icon ON
+	else if(jQuery.isEmptyObject(savedBarResults)){		//if the object is empty, call Google
+		$(".fa").removeClass("on");						//user is turning the icon ON
 		$(this).addClass("on");
 		createInput();
 		deleteMarkers();
 		refreshMap();
 	}
-	else if(savedBarResults!="undefined"){
+	else {												//creates list from saved results
 		createSavedList(savedBarResults);
 
 	}
@@ -151,14 +151,14 @@ function toggleCoffee(){
 		deleteMarkers();
 		$("ul").empty();
 	}
-	else if(savedCoffeeResults=="undefined"){
+	else if(jQuery.isEmptyObject(savedCoffeeResults)){
 		$(".fa").removeClass("on");		//user is turning the icon ON
 		$(this).addClass("on");
 		createInput();
 		deleteMarkers();
 		refreshMap();
 	}
-	else if(savedCoffeeResults!="undefined"){
+	else{
 		createSavedList(savedCoffeeResults);
 
 	}
@@ -170,14 +170,14 @@ function toggleRestaurant(){
 		deleteMarkers();
 		$("ul").empty();
 	}
-	else if(savedFoodResults=="undefined"){
+	else if(jQuery.isEmptyObject(savedFoodResults))
 		$(".fa").removeClass("on");		//user is turning the icon ON
 		$(this).addClass("on");
 		createInput();
 		deleteMarkers();
 		refreshMap();
 	}
-	else if(savedFoodResults!="undefined"){
+	else{
 		createSavedList(savedFoodResults);
 
 	}
