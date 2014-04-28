@@ -47,7 +47,7 @@ GLOBAL VARIABLES
 var markers = [];
 var names =[];
 var savedBarResults=[];
-var savedCoffeResults=[];
+var savedCoffeeResults=[];
 var savedFoodResults=[];
 
 /***********************************
@@ -145,6 +145,7 @@ function toggleBar(){
 }
 
 function toggleCoffee(){
+	console.log(savedCoffeeResults);
 	if($(this).hasClass("on")){			//user is turning the icon OFF
 		$(this).removeClass("on");
 		deleteMarkers();
