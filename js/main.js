@@ -170,7 +170,7 @@ function toggleRestaurant(){
 		deleteMarkers();
 		$("ul").empty();
 	}
-	else if(jQuery.isEmptyObject(savedFoodResults))
+	else if(jQuery.isEmptyObject(savedFoodResults)){
 		$(".fa").removeClass("on");		//user is turning the icon ON
 		$(this).addClass("on");
 		createInput();
