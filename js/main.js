@@ -335,9 +335,10 @@ function createSavedList(savedResults){
 				"</div>"+
 			"</li>");
 	}
+	names.push(savedResults.name);
 	console.log("this is the savedList yeah!")
 }
-names.push(savedResults.name);
+
 
 /********************************
 CREATE MARKER FUNCTION (IF ALREADY CALL GOOGLE)
