@@ -7,7 +7,16 @@
 // 	getFirstStore();
 // }
 
-
+/******************************
+/***********************************/
+// if($(window).width()<500){
+// 	$(".icon").toggleClass("fa-2x");
+// 	$(".icon").toggleClass("fa-5x");
+// }
+// else{
+// 	$(".icon").toggleClass("fa-5x");
+// 	$(".icon").toggleClass("fa-2x");
+// }
 
 // /******************************
 // /***********************************/
@@ -37,7 +46,9 @@ GLOBAL VARIABLES
 /***********************************/
 var markers = [];
 var names =[];
-
+var savedBarResults=[];
+var savedCoffeResults=[];
+var savedFoodResults=[];
 
 /***********************************
 USER CLICKS ON A STORE
@@ -53,16 +64,12 @@ function styleList(){
 }
 
 /***********************************
-ADD OR REMOVE YELLOW MARKER
+ADD YELLOW MARKER
 /***********************************/
-//$('<div />').html("Chris&apos; corner").text()
-
-
 function addYellowMarker(poop){
-	//updateMarker(markers,lastIndex,"#ffae73");
 	for(var i=0; i<names.length; i++){
 		var pee = poop.first().html();
-		if($('<div />').html(pee).text() == names[i]){
+		if($('<div />').html(pee).text() == names[i]){	//this converts &amp to &
 
 			updateMarker(markers,i,"#ebb721");
 		}
@@ -73,6 +80,9 @@ function addYellowMarker(poop){
 	}
 }
 
+/***********************************
+REMOVE YELLOW MARKER
+/***********************************/
 function removeYellowMarker(){
 	//updateMarker(markers,lastIndex,"#ffae73");
  $('<div />').html("Chris&apos; corner").text();
@@ -89,16 +99,7 @@ function removeYellowMarker(){
 	}
 }
 
-/******************************
-/***********************************/
-// if($(window).width()<500){
-// 	$(".icon").toggleClass("fa-2x");
-// 	$(".icon").toggleClass("fa-5x");
-// }
-// else{
-// 	$(".icon").toggleClass("fa-5x");
-// 	$(".icon").toggleClass("fa-2x");
-// }
+
 /********************************
 GET CURRENT LOCATION COORDINATES
 /***********************************/
@@ -119,44 +120,74 @@ else{
 TOGGLE ICON COLORS
 **********************************/
 
-$(".bar").on("click", toggleIcon);
-$(".coffee").on("click", toggleIcon);
-$(".restaurant").on("click", toggleIcon);
+$(".bar").on("click", toggleBar);
+$(".coffee").on("click", toggleCoffee);
+$(".restaurant").on("click", toggleRestaurant);
 $(".bar").click()
-function toggleIcon(){
-	if($(this).hasClass("on")){
+
+function toggleBar(){
+	if($(this).hasClass("on")){			//user is turning the icon OFF
 		$(this).removeClass("on");
 		deleteMarkers();
 		$("ul").empty();
 	}
-	else{
-		$(".fa").removeClass("on");
+	else if(savedBarResults=="undefined"){
+		$(".fa").removeClass("on");		//user is turning the icon ON
 		$(this).addClass("on");
 		createInput();
+		deleteMarkers();
 		refreshMap();
+	}
+	else if(savedBarResults!="undefined"){
+		createSavedList(savedBarResults);
+
+	}
+}
+
+function toggleCoffee(){
+	if($(this).hasClass("on")){			//user is turning the icon OFF
+		$(this).removeClass("on");
+		deleteMarkers();
+		$("ul").empty();
+	}
+	else if(savedCoffeeResults=="undefined"){
+		$(".fa").removeClass("on");		//user is turning the icon ON
+		$(this).addClass("on");
+		createInput();
+		deleteMarkers();
+		refreshMap();
+	}
+	else if(savedCoffeeResults!="undefined"){
+		createSavedList(savedCoffeeResults);
+
+	}
+}
+
+function toggleRestaurant(){
+	if($(this).hasClass("on")){			//user is turning the icon OFF
+		$(this).removeClass("on");
+		deleteMarkers();
+		$("ul").empty();
+	}
+	else if(savedFoodResults=="undefined"){
+		$(".fa").removeClass("on");		//user is turning the icon ON
+		$(this).addClass("on");
+		createInput();
+		deleteMarkers();
+		refreshMap();
+	}
+	else if(savedFoodResults!="undefined"){
+		createSavedList(savedFoodResults);
+
 	}
 }
 /****************************
 SETS UP THE MAP
 **********************************/
 var map;
-
-/*function loadCambridge (){*/
-
-// var here;
-// getLocation;
-
-// function getLocation()
-//   {
-//   if(navigator.geolocation){
-//     navigator.geolocation.getCurrentPosition(showPosition);
-//     }
-//   else{
-//   	console.log("Geolocation is not supported by this browser.")
-//   }
-//   }
 var here;
- function showPosition(position){
+
+function showPosition(position){
    var lat=position.coords.latitude;
    var lng=position.coords.longitude; 
 
@@ -195,13 +226,11 @@ var here;
 	map.setOptions({styles: styles});	
 }
 /********************************
-Clear markers and SET UP SEARCH ARRAY
+CREATE SEARCH CATEGORY
 **********************************/
 var input=[];
 function createInput(){
 	input=[];
-	deleteMarkers();
-
 
 	allIconClasses =[".bar", ".coffee", ".restaurant"];
 	allIcons = ["bar", "cafe", "restaurant"];
@@ -211,16 +240,9 @@ function createInput(){
 			input.push(allIcons[i]);
 		}
 	}
-
-	// if(input.length != 0){
-	// 	refreshMap();
-	// 	markers[0].icon.fillColor="#299bd4";
-
-
-	// }
 }
 /********************************
-GET & DISPLAY BARS
+DELETE MARKERS FUNCTION
 **********************************/
 function deleteMarkers() {
 	for (var i = 0; i < markers.length; i++) {
@@ -230,6 +252,9 @@ function deleteMarkers() {
 	names=[];
 }
 
+/********************************
+REFRESH MAP FUNCTION
+**********************************/
 function refreshMap(){
 	var request = {
 		location: here,
@@ -240,14 +265,17 @@ function refreshMap(){
 	service.search(request, createMarkers);
 }
 
-	// 	console.log("markers in refreshmap");
-	// 	console.log(input);
+
+/********************************
+CREATE MARKERS FUNCTION
+**********************************/
 var closingTime="";
 
 function createMarkers(results, status) {
 	//("ul").children().remove();
 markers=[];
 names=[];
+
 	if (status == google.maps.places.PlacesServiceStatus.OK) {
 		$("ul").empty();
 
@@ -264,8 +292,17 @@ names=[];
 
 				markers.push(marker);
 				names.push(results[i].name);
-				console.log(results[i].name)	
-				// var name = results[i].name;
+
+				if(input[0] == "bar") {
+					savedBarResults["store"+i]["name"]=results[i].name;
+				}
+				else if(input[0] == "cafe"){
+					savedCoffeeResults["store"+i]["name"]=results[i].name;
+				}
+
+				else if(input[0] == "restaurant"){
+					savedFoodResults["store"+i]["name"]=results[i].name;
+				}
 
 				service.getDetails({reference:results[i].reference}, function (placeResult){;
 					var address = placeResult.formatted_address.replace(", United States","")
@@ -283,6 +320,37 @@ names=[];
 		}
 	}
 }
+/********************************
+CREATE LIST FUNCTION (IF ALREADY CALL GOOGLE)
+**********************************/
+function createSavedList(savedResults){
+	for (var i=0; i<savedResults.length; i++){
+		$("ul").append(
+			"<li>"+ 
+				"<div class='name'>"+
+					savedResults[i].name+ 
+				"</div>" + 
+				"<div class='address'>" + 
+					savedResults[i].address + 
+				"</div>"+
+			"</li>");
+	}
+	console.log("this is the savedList yeah!")
+}
+names.push(savedResults.name);
+
+/********************************
+CREATE MARKER FUNCTION (IF ALREADY CALL GOOGLE)
+**********************************/
+function createSavedMarkers(savedResults){
+
+}
+markers.push(markers);
+
+/********************************
+UPDATE MARKERS FUNCTION
+**********************************/
+
 function updateMarker(markers,index,color){
 	markers[index].icon.fillColor=color;
 	markers[index].setIcon(markers[index].icon);
